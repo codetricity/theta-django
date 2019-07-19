@@ -31,6 +31,11 @@ settings for your specific camera.
     THETA_ID = 'THETAYL00105377'
     THETA_PASSWORD = '00105377'  # default password. may have been changed
 
+
+## Screenshot of Command Dashboard
+
+![Command Home](doc/images/interface.png)
+
 ## Discussion
 
 
