@@ -7,11 +7,17 @@ import pprint
 from django.http import HttpResponse
 
 
-THETA_IP = '192.168.2.101'
 PROJECT_MEDIA_DIR = os.getcwd() + "/media/"
+
+################
+# Change the settings below
+################
 # global constants specific to your THETA. Change for your camera.
+THETA_IP = '192.168.2.101'
 THETA_ID = 'THETAYL00105377'
 THETA_PASSWORD = '00105377'  # default password. may have been changed
+# End changes
+
 THETA_URL = f'http://{THETA_IP}/osc/'
 
 
