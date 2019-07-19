@@ -25,19 +25,6 @@ def homepage(request):
     return render(request, 'home.html')
 
 
-def get(osc_command):
-    url = THETA_URL + osc_command
-    resp = requests.get(url, auth=(HTTPDigestAuth(THETA_ID, THETA_PASSWORD)))
-    pprint.pprint(resp.json())
-
-
-def post(osc_command):
-    url = THETA_URL + osc_command
-    resp = requests.post(url,
-                         auth=(HTTPDigestAuth(THETA_ID, THETA_PASSWORD)))
-    pprint.pprint(resp.json())
-
-
 def state(request):
     url = f"{THETA_URL}state"
     resp = requests.post(url, auth=(HTTPDigestAuth(THETA_ID, THETA_PASSWORD)))
@@ -48,10 +35,6 @@ def state(request):
 
 def info(request):
     url = f"{THETA_URL}info"
-    # url = f"http://{THETA_IP}/osc/info"
-    # URL below is for testing only
-    # url = "https://httpbin.org/get"
-    # r = requests.request('GET', url)
     resp = requests.get(url, auth=(HTTPDigestAuth(THETA_ID, THETA_PASSWORD)))
     data = resp.json()
     print(data)

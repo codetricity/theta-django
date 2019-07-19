@@ -38,5 +38,6 @@ settings for your specific camera.
 
 ## Discussion
 
+Please post your comments [here](https://community.theta360.guide/t/manage-ricoh-theta-from-office-network-with-django/4643?u=codetricity).
 
 ![Analytics](https://ga-beacon.appspot.com/UA-73311422-5/theta-django)
