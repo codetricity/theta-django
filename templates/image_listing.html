@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image Listing</title>
+</head>
+<body>
+    <a href="/">Home</a>
+    <hr>
+    <h1>Image Listing</h1>
+    <p>Default username and password is the serial number of the camera.
+        This is needed for Digest Authentication
+    </p>
+    Example
+    <pre>
+    THETA_ID = 'THETAYL00105377'
+    Password = '00105377'  # default password. may have been changed
+    </pre>
+    <!-- {{ model }}
+    {{data}} -->
+    <table>
+    {% for image_url in image_list %}
+    <tr>
+        <td><a href="{{image_url}}">{{image_url}}</a> </td>
+        
+    </tr>
+    {% endfor %}
+</table>
+
+<hr><a href="/">Home</a>
+</body>
+</html>

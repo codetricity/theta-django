@@ -4,6 +4,7 @@ from requests.auth import HTTPDigestAuth
 import json
 import os
 import pprint
+from django.http import HttpResponse
 
 
 THETA_IP = '192.168.2.101'
@@ -62,3 +63,65 @@ def take_picture(request):
     data = resp.json()
     pprint.pprint(data)
     return render(request, 'commandhome.html', {'data': data})
+
+
+def generate_image_list():
+    url = f"{THETA_URL}commands/execute"
+    command_string = "camera.listFiles"
+    payload = {
+                "name": command_string,
+                "parameters": {
+                    "fileType": "image",
+                    "entryCount": 20,
+                    "maxThumbSize": 0
+
+                }}
+    resp = requests.post(
+                        url,
+                        json=payload,
+                        auth=(HTTPDigestAuth(THETA_ID, THETA_PASSWORD)))
+
+    data = resp.json()
+    imageEntries = data["results"]["entries"]
+    images = []
+    for imageEntry in imageEntries:
+        print(imageEntry["fileUrl"])
+        images.append(imageEntry["fileUrl"])
+    return images
+
+
+def image_urls(request):
+    images = generate_image_list()
+
+    return render(request, 'image_listing.html', {'image_list': images})
+
+
+def getImage(url):
+    imageName = url.split("/")[6]
+    print("saving " + imageName + " to file")
+    with open(f'{PROJECT_MEDIA_DIR}{imageName}', 'wb') as handle:
+        response = requests.get(
+                    url,
+                    stream=True,
+                    auth=(HTTPDigestAuth(THETA_ID, THETA_PASSWORD)))
+
+        if not response.ok:
+            print(response)
+        for block in response.iter_content(1024):
+            if not block:
+                break
+            handle.write(block)
+
+
+# def download_image(request):
+#     test_url = "http://192.168.2.101/files/150100525831424d42079d18e0b6c300/100RICOH/R0010056.JPG"
+#     getImage(test_url)
+#     return HttpResponse('wrote file')
+
+
+def download_all_images(request):
+    print("start download tester")
+    images = generate_image_list()
+    for imageLocation in images:
+        getImage(imageLocation)
+    return HttpResponse(f'wrote {str(len(images))} files')
