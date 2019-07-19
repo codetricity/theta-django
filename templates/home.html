@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <title>RICOH THETA API Tests</title>
+</head>
+<body>
+        <h1>RICOH THETA API Tests</h1>
+        <h2>Requirements </h2>
+        <ul>
+            <li> THETA must be connected to the same network that your  
+                workstation or laptop is on </li>
+            <li> THETA must be configured to use Client Mode</li>
+            <li> In views.py, set the IP address and password</li>
+        </ul>
+        <hr>
+        <h2>Commands</h2>
+        <ul>
+            <li><a href="{% url 'info' %}">Camera Info (GET)</a></li>
+            <li><a href="{% url 'state' %}">Camera State (POST)</a></li>
+            <li><a href="{% url 'take_picture' %}">Take Picture</a></li>
+
+        </ul>
+    
+</body>
+</html>
+
+
